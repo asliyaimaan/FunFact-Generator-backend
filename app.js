@@ -5,10 +5,14 @@ const axios=require('axios');
 const path=require('path');
 const app=express();
 const PORT=3000;
+const cors = require('cors'); // <-- Add this line
 
 //Serve static frontend files from "public" folder
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cors({
+  origin: 'https://funfactgenerator123.netlify.app'
+}));
 //Defining a route using express
 app.get('/funfact', async (req, res) => {
   try {
@@ -82,4 +86,5 @@ app.get('/funfact', async (req, res) => {
 //Server Listener
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
+
 });
